@@ -2,8 +2,36 @@
 
 <h3>Add yourself</h3>
 
+<link rel="stylesheet" href="/select2-bootstrap4-theme-1.0.2/dist/select2-bootstrap4.min.css">
+
 <%= form_tag add_course_path, method: :post do %>
-  <select id="dept_select" name="dept" placeholder="department">
+  <div class="form-row">
+    <div class="col">
+      <select id="dept_select" name="dept" placeholder="department" class="form-control">
+        <option></option>
+        <% Department.all.each do |dept| %>
+        <option value="<%= dept.id %>"><%= dept.name %></option>
+        <% end %>
+      </select>
+    </div>
+    <div class="col">
+      <select id="course_select" name="course" placeholder="course" class="form-control">
+        <option></option>
+      </select>
+    </div>
+    <div class="col">
+      <select id="section_select" name="section" placeholder="section" class="form-control">
+        <option></option>
+      </select>
+    </div>
+    <div class="col">
+      <input type="text" placeholder="time" id="times" name="times" class="form-control">
+    </div>
+    <div class="col">
+      <input type="submit" class="btn btn-primary">
+    </div>
+  </div>
+  <!-- <select id="dept_select" name="dept" placeholder="department">
     <option></option>
     <% Department.all.each do |dept| %>
     <option value="<%= dept.id %>"><%= dept.name %></option>
@@ -16,7 +44,7 @@
     <option></option>
   </select>
   <input type="text" placeholder="time" id="times" name="times">
-  <input type="submit">
+  <input type="submit" class="btn btn-primary"> -->
 <% end %>
 
 <table class="table">

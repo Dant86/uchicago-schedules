@@ -2,6 +2,8 @@
 // All this logic will automatically be available in application.js.
 
 $(document).ready(function() {
+  $.fn.select2.defaults.set( "theme", "bootstrap4" );
+  
   $('#dept_select').select2({
     tags: true,
     allowClear: true,

@@ -1,0 +1,49 @@
+<h1>Class List</h1>
+
+<h3>Add yourself</h3>
+
+<%= form_tag add_course_path, method: :post do %>
+  <select id="dept_select" name="dept" placeholder="department">
+    <option></option>
+    <% Department.all.each do |dept| %>
+    <option value="<%= dept.id %>"><%= dept.name %></option>
+    <% end %>
+  </select>
+  <select id="course_select" name="course" placeholder="course">
+    <option></option>
+  </select>
+  <select id="section_select" name="section" placeholder="section">
+    <option></option>
+  </select>
+  <input type="text" placeholder="time" id="times" name="times">
+  <input type="submit">
+<% end %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Department</th>
+      <th>Course</th>
+      <th>Section</th>
+      <th>Time</th>
+      <th>Student</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% Department.all.each do |dept| %>
+      <% dept.courses.each do |course| %>
+        <% course.sections.order('sections.times').each do |sect| %>
+          <% sect.users.each do |user| %>
+            <tr>
+              <td><%= dept.name %></td>
+              <td><%= course.name %></td>
+              <td><%= sect.number %></td>
+              <td><%= sect.times %></td>
+              <td><%= user.full_name %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
